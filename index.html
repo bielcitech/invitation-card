@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation d'Anniversaire de Folie</title>
+    <style>
+        /* RESET ET STYLES DE BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #a08a60;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        /* SECTIONS PRINCIPALES */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* ÉLÉMENTS DE DÉCORATION */
+        .balloon {
+            position: absolute;
+            width: 120px;
+            height: 160px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s ease-out;
+            animation: floatBalloon 8s ease-in-out infinite;
+        }
+        
+        @keyframes floatBalloon {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-15px) translateX(5px); }
+            50% { transform: translateY(0) translateX(10px); }
+            75% { transform: translateY(10px) translateX(5px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+
+        .balloon-gold {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 160"><defs><radialGradient id="balloonGold" cx="50%" cy="40%" r="50%" fx="35%" fy="30%"><stop offset="0%" stop-color="%23fff6e0" /><stop offset="40%" stop-color="%23ffd700" /><stop offset="80%" stop-color="%23daa520" /><stop offset="100%" stop-color="%23b8860b" /></radialGradient><linearGradient id="shineGold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.7" /><stop offset="20%" stop-color="%23ffffff" stop-opacity="0" /></linearGradient></defs><path d="M50,10 C75,10 90,30 90,75 C90,120 75,150 50,150 C25,150 10,120 10,75 C10,30 25,10 50,10 Z" fill="url(%23balloonGold)" /><path d="M30,30 Q40,20 55,35 Q65,45 70,65" stroke="%23ffffff" stroke-width="2" stroke-opacity="0.4" fill="none" /><ellipse cx="30" cy="45" rx="10" ry="15" fill="url(%23shineGold)" transform="rotate(-30, 30, 45)" /><path d="M50,150 C50,150 48,155 50,160 C52,155 50,150 50,150 Z" fill="%23daa520" /><path d="M50,150 L50,190" stroke="%23daa520" stroke-width="1.5" /></svg>');
+        }
+
+        .balloon-cream {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 160"><defs><radialGradient id="balloonCream" cx="50%" cy="40%" r="50%" fx="35%" fy="30%"><stop offset="0%" stop-color="%23ffffff" /><stop offset="40%" stop-color="%23fffaf0" /><stop offset="80%" stop-color="%23fff8dc" /><stop offset="100%" stop-color="%23f5f5dc" /></radialGradient><linearGradient id="shineCream" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.7" /><stop offset="20%" stop-color="%23ffffff" stop-opacity="0" /></linearGradient></defs><path d="M50,10 C75,10 90,30 90,75 C90,120 75,150 50,150 C25,150 10,120 10,75 C10,30 25,10 50,10 Z" fill="url(%23balloonCream)" /><path d="M30,30 Q40,20 55,35 Q65,45 70,65" stroke="%23ffffff" stroke-width="2" stroke-opacity="0.4" fill="none" /><ellipse cx="30" cy="45" rx="10" ry="15" fill="url(%23shineCream)" transform="rotate(-30, 30, 45)" /><path d="M50,150 C50,150 48,155 50,160 C52,155 50,150 50,150 Z" fill="%23f5f5dc" /><path d="M50,150 L50,190" stroke="%23f5f5dc" stroke-width="1.5" /></svg>');
+        }
+
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: gold;
+            opacity: 0;
+            transform: rotate(45deg) scale(0);
+            transition: all 1s ease-out;
+            animation: spinConfetti 10s linear infinite;
+        }
+        
+        @keyframes spinConfetti {
+            0% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(225deg) scale(0.8); }
+            100% { transform: rotate(405deg) scale(1); }
+        }
+
+        .star {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80 80"><defs><linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23fff6e0" /><stop offset="40%" stop-color="%23ffd700" /><stop offset="100%" stop-color="%23daa520" /></linearGradient><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="blur" /><feComposite in="SourceGraphic" in2="blur" operator="over" /></filter></defs><path d="M40,8 L48.8,26.4 L68.8,29.2 L54.4,43.2 L57.6,63.2 L40,53.6 L22.4,63.2 L25.6,43.2 L11.2,29.2 L31.2,26.4 Z" fill="url(%23starGrad)" filter="url(%23glow)" /><path d="M40,15 L46,28 L60,30 L50,40 L52,54 L40,47 L28,54 L30,40 L20,30 L34,28 Z" fill="%23ffffff" opacity="0.3" /></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: scale(0) rotate(0deg);
+            transition: all 1s ease-out;
+            animation: twinkleStar 5s ease-in-out infinite;
+        }
+
+        @keyframes twinkleStar {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(15deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .ribbon {
+            position: absolute;
+            width: 40px;
+            height: 100px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 100"><path d="M20,0 Q40,50 20,100 Q0,50 20,0 Z" fill="%23daa520" /></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: rotate(-35deg) translateY(30px);
+            transition: all 1.2s ease-out;
+            animation: waveRibbon 12s ease-in-out infinite;
+        }
+        
+        @keyframes waveRibbon {
+            0% { transform: rotate(-35deg) translateY(0); }
+            25% { transform: rotate(-30deg) translateY(5px); }
+            50% { transform: rotate(-40deg) translateY(0); }
+            75% { transform: rotate(-30deg) translateY(-5px); }
+            100% { transform: rotate(-35deg) translateY(0); }
+        }
+
+        .circle-frame {
+            width: 280px;
+            height: 280px;
+            border: 8px solid transparent;
+            border-radius: 50%;
+            position: relative;
+            margin: 40px 0;
+            background-image: linear-gradient(white, white), 
+                              linear-gradient(to right, #daa520, #f5dd9d);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1.5s ease-out;
+        }
+
+        .gold-line {
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #daa520, transparent);
+            margin: 30px auto;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 1.2s ease-out;
+        }
+
+        /* SECTION INTRO */
+        #intro {
+            background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+        }
+
+        .title-small {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #daa520;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .title-large {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #a08a60;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.3s;
+        }
+
+        .title-script {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #daa520;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.6s;
+        }
+
+        /* ANIMATION SUPPLÉMENTAIRE POUR LES BALLONS */
+        .balloon:nth-child(1) { animation-delay: 0.2s; animation-duration: 8s; }
+        .balloon:nth-child(2) { animation-delay: 1.5s; animation-duration: 9s; }
+        .balloon:nth-child(3) { animation-delay: 0.8s; animation-duration: 7.5s; }
+        .balloon:nth-child(4) { animation-delay: 2s; animation-duration: 8.5s; }
+        
+        /* ANIMATION SUPPLÉMENTAIRE POUR LES ÉTOILES */
+        .star:nth-child(5) { animation-delay: 0.5s; animation-duration: 5s; }
+        .star:nth-child(6) { animation-delay: 1.8s; animation-duration: 4.5s; }
+        .star:nth-child(7) { animation-delay: 1.2s; animation-duration: 5.5s; }
+        .star:nth-child(8) { animation-delay: 0.3s; animation-duration: 4.8s; }
+        
+        /* ANIMATION SUPPLÉMENTAIRE POUR LES CONFETTIS */
+        .confetti:nth-child(9) { animation-delay: 1s; animation-duration: 10s; }
+        .confetti:nth-child(10) { animation-delay: 0.7s; animation-duration: 11s; }
+        .confetti:nth-child(11) { animation-delay: 1.4s; animation-duration: 9.5s; }
+        .confetti:nth-child(12) { animation-delay: 0.1s; animation-duration: 10.5s; }
+
+        .date-text {
+            font-size: 2.5rem;
+            color: #a08a60;
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .time-text {
+            font-size: 2rem;
+            color: #daa520;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.3s;
+        }
+
+        .address-text {
+            font-size: 1.5rem;
+            color: #daa520;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .rsvp-text {
+            font-size: 1.5rem;
+            color: #a08a60;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.3s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0;
+            transition: opacity 1s ease 2s;
+            color: #daa520;
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* SECTION DETAILS */
+        #details {
+            background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);
+        }
+
+        .details-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 85%;
+            max-width: 600px;
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.2);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .details-title {
+            font-size: 2.5rem;
+            color: #a08a60;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .detail-item {
+            margin-bottom: 35px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .detail-item:nth-child(2) { transition-delay: 0.2s; }
+        .detail-item:nth-child(3) { transition-delay: 0.4s; }
+        .detail-item:nth-child(4) { transition-delay: 0.6s; }
+
+        .detail-title {
+            font-weight: bold;
+            font-size: 1.4rem;
+            color: #daa520;
+            margin-bottom: 10px;
+        }
+
+        .detail-text {
+            font-size: 1.2rem;
+            color: #a08a60;
+            line-height: 1.5;
+        }
+
+        /* SECTION LIEU */
+        #location {
+            background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+        }
+
+        .location-title {
+            font-size: 2.5rem;
+            color: #a08a60;
+            margin-bottom: 40px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .map-container {
+            width: 85%;
+            max-width: 600px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.2);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.3s;
+        }
+
+        .directions-btn {
+            margin-top: 40px;
+            padding: 15px 35px;
+            background: linear-gradient(to right, #daa520, #f5dd9d);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(218, 165, 32, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease 0.6s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .directions-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(218, 165, 32, 0.4);
+        }
+
+        /* SECTION RSVP */
+        #rsvp {
+            background: linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);
+        }
+
+        .rsvp-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 85%;
+            max-width: 600px;
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.2);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .rsvp-title {
+            font-size: 2.5rem;
+            color: #a08a60;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .rsvp-subtitle {
+            font-size: 1.2rem;
+            color: #a08a60;
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .rsvp-btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            background-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .btn-yes {
+            color: #daa520;
+            border-color: #daa520;
+            transition-delay: 0.3s;
+        }
+
+        .btn-no {
+            color: #a08a60;
+            border-color: #a08a60;
+            transition-delay: 0.5s;
+        }
+
+        .btn-yes:hover {
+            background: linear-gradient(to right, #daa520, #f5dd9d);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(218, 165, 32, 0.3);
+            border-color: transparent;
+        }
+
+        .btn-no:hover {
+            background-color: #a08a60;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(160, 138, 96, 0.3);
+        }
+
+        .success-message {
+            margin-top: 30px;
+            color: #daa520;
+            font-style: italic;
+            font-size: 1.2rem;
+            opacity: 0;
+            height: 0;
+            transition: all 0.5s ease;
+        }
+
+        /* ANIMATIONS DÉCLENCHÉES PAR LE SCROLL */
+        .active .balloon {
+            opacity: 0.9;
+        }
+        
+        .active .confetti {
+            opacity: 0.9;
+        }
+        
+        .active .ribbon {
+            opacity: 0.9;
+        }
+
+        .active .star {
+            opacity: 0.9;
+        }
+
+        .active .title-small,
+        .active .title-large,
+        .active .title-script,
+        .active .date-text,
+        .active .time-text,
+        .active .address-text,
+        .active .rsvp-text,
+        .active .location-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .active .circle-frame {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .active .age-text {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .active .details-container,
+        .active .rsvp-container {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .active .detail-item,
+        .active .directions-btn,
+        .active .rsvp-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .active .gold-line {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .active .map-container {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .active .scroll-indicator {
+            opacity: 0.7;
+        }
+
+        /* LOADER INITIAL */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-icon {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #daa520;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .title-small {
+                font-size: 1.8rem;
+            }
+            .title-large {
+                font-size: 2.5rem;
+            }
+            .title-script {
+                font-size: 2.2rem;
+            }
+            .age-text {
+                font-size: 3.5rem;
+            }
+            .circle-frame {
+                width: 220px;
+                height: 220px;
+            }
+            .date-text {
+                font-size: 1.8rem;
+            }
+            .time-text {
+                font-size: 1.5rem;
+            }
+            .address-text, .rsvp-text {
+                font-size: 1.2rem;
+            }
+            .details-container, .rsvp-container {
+                width: 90%;
+                padding: 30px;
+            }
+            .details-title, .rsvp-title, .location-title {
+                font-size: 2rem;
+            }
+            .balloon {
+                width: 80px;
+                height: 100px;
+            }
+            .detail-title {
+                font-size: 1.2rem;
+            }
+            .detail-text {
+                font-size: 1rem;
+            }
+            .directions-btn, .rsvp-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
+        
+        /* Pour les liens de défilement doux */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-icon"></div>
+    </div>
+
+    <!-- Section Intro -->
+    <section id="intro">
+        <!-- Ballons décoratifs -->
+        <div class="balloon balloon-gold" style="top: 10%; left: 5%;"></div>
+        <div class="balloon balloon-cream" style="top: 15%; right: 8%;"></div>
+        <div class="balloon balloon-gold" style="bottom: 20%; left: 8%;"></div>
+        <div class="balloon balloon-cream" style="bottom: 15%; right: 5%;"></div>
+        
+        <!-- Étoiles -->
+        <div class="star" style="top: 20%; left: 20%;"></div>
+        <div class="star" style="top: 25%; right: 25%;"></div>
+        <div class="star" style="bottom: 30%; left: 15%;"></div>
+        <div class="star" style="bottom: 20%; right: 18%;"></div>
+        
+        <!-- Rubans -->
+        <div class="ribbon" style="top: 30%; left: 12%;"></div>
+        <div class="ribbon" style="bottom: 35%; right: 10%;"></div>
+        
+        <!-- Confettis -->
+        <div class="confetti" style="top: 12%; left: 25%; background-color: gold;"></div>
+        <div class="confetti" style="top: 18%; right: 30%; background-color: #f5dd9d;"></div>
+        <div class="confetti" style="bottom: 25%; left: 28%; background-color: gold;"></div>
+        <div class="confetti" style="bottom: 22%; right: 22%; background-color: #f5dd9d;"></div>
+        
+        <div class="title-small">Tu es invité à mon</div>
+        <div class="title-large">ANNIVERSAIRE</div>
+        <div class="title-script">de folie</div>
+        
+        <div class="circle-frame" style="overflow: hidden;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center; position: relative;">
+                <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='270' height='270'%3E%3Cdefs%3E%3CradialGradient id='b' cx='50%25' cy='50%25' r='50%25' fx='50%25' fy='50%25'%3E%3Cstop offset='0%25' stop-color='%23fff8e1'/%3E%3Cstop offset='100%25' stop-color='%23daa520'/%3E%3C/radialGradient%3E%3Cfilter id='a' width='140%25' height='140%25' x='-20%25' y='-20%25' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='5' result='blur'/%3E%3CfeColorMatrix in='blur' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -7'/%3E%3C/filter%3E%3C/defs%3E%3Ccircle cx='135' cy='135' r='125' fill='url(%23b)' filter='url(%23a)'/%3E%3Ccircle cx='135' cy='135' r='125' fill='url(%23b)'/%3E%3Ccircle cx='135' cy='135' r='110' fill='%23fff' opacity='.9'/%3E%3Cpath fill='%23daa520' d='M135 50c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10 4.5-10 10-10zm-50 35c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10 4.5-10 10-10zm100 0c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10 4.5-10 10-10zm-115 53c1.7-3.7 6-5.3 9.7-3.7 3.7 1.7 5.3 6 3.7 9.7-1.7 3.7-6 5.3-9.7 3.7-3.7-1.7-5.3-6-3.7-9.7zm130 0c-1.7-3.7-6-5.3-9.7-3.7-3.7 1.7-5.3 6-3.7 9.7 1.7 3.7 6 5.3 9.7 3.7 3.7-1.7 5.3-6 3.7-9.7zM85 173c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10 4.5-10 10-10zm100 0c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10 4.5-10 10-10zm-50 0c-30.4 0-55-24.6-55-55s24.6-55 55-55 55 24.6 55 55-24.6 55-55 55z'/%3E%3Ctext x='135' y='130' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='48' font-weight='bold' fill='%23daa520'%3E20%3C/text%3E%3Ctext x='135' y='160' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='20' fill='%23daa520'%3EANS%3C/text%3E%3C/svg%3E" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.2;">
+                <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='270' height='270'%3E%3Cfilter id='a'%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Ccircle cx='135' cy='135' r='130' fill='%23daa520' opacity='.3' filter='url(%23a)'/%3E%3Ccircle cx='135' cy='135' r='125' fill='%23fff'/%3E%3Cpath fill='%23daa520' d='M245 135c0 4.7-.3 9.3-.9 13.8-1.2 9.5-3.5 18.5-6.8 27.2-3.3 8.7-7.5 16.9-12.7 24.5-5.2 7.6-11.3 14.6-18.3 20.7-6.9 6.1-14.8 11.5-23.3 15.9-8.5 4.4-17.6 7.8-27.2 10.1-9.5 2.3-19.6 3.5-29.8 3.5-10.2 0-20.3-1.2-29.8-3.5-9.5-2.3-18.7-5.7-27.2-10.1-8.5-4.4-16.3-9.8-23.3-15.9-7-6.1-13.1-13-18.3-20.7-5.2-7.6-9.5-15.8-12.7-24.5-3.3-8.7-5.6-17.7-6.8-27.2-.6-4.5-.9-9.1-.9-13.8 0-4.7.3-9.3.9-13.8 1.2-9.5 3.5-18.5 6.8-27.2 3.3-8.7 7.5-16.9 12.7-24.5 5.2-7.6 11.3-14.6 18.3-20.7 6.9-6.1 14.8-11.5 23.3-15.9 8.5-4.4 17.6-7.8 27.2-10.1 9.5-2.3 19.6-3.5 29.8-3.5 10.2 0 20.3 1.2 29.8 3.5 9.5 2.3 18.7 5.7 27.2 10.1 8.5 4.4 16.3 9.8 23.3 15.9 7 6.1 13.1 13 18.3 20.7 5.2 7.6 9.5 15.8 12.7 24.5 3.3 8.7 5.6 17.7 6.8 27.2.6 4.5.9 9.1.9 13.8zm-10 0c0-9.3-1.4-18.3-4-26.8-2.6-8.5-6.3-16.5-11-23.8-4.7-7.4-10.2-14-16.5-19.8-6.2-5.8-13.2-10.8-20.7-14.8-7.5-4.1-15.6-7.2-24-9.3-8.4-2.1-17.3-3.1-26.3-3.1-9.1 0-18 1.1-26.4 3.1-8.4 2.1-16.5 5.2-24 9.3-7.5 4.1-14.5 9-20.7 14.8-6.2 5.8-11.8 12.4-16.5 19.8-4.7 7.4-8.4 15.3-11 23.8-2.6 8.5-4 17.5-4 26.8 0 9.3 1.4 18.3 4 26.8 2.6 8.5 6.3 16.5 11 23.8 4.7 7.4 10.2 14 16.5 19.8 6.2 5.8 13.2 10.8 20.7 14.8 7.5 4.1 15.6 7.2 24 9.3 8.4 2.1 17.3 3.1 26.4 3.1 9 0 17.9-1.1 26.3-3.1 8.4-2.1 16.5-5.2 24-9.3 7.5-4.1 14.5-9 20.7-14.8 6.2-5.8 11.8-12.4 16.5-19.8 4.7-7.4 8.4-15.3 11-23.8 2.6-8.5 4-17.5 4-26.8z'/%3E%3Ccircle cx='135' cy='135' r='115' fill='%23fff'/%3E%3C/svg%3E" style="position: absolute; width: 100%; height: 100%; object-fit: cover;">
+                <img src="https://images.pexels.com/photos/3764152/pexels-photo-3764152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Portrait de la personne fêtant son anniversaire" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 1;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(218, 165, 32, 0.8); padding: 10px 0; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: white; line-height: 1;">POUR FÊTER MES</div>
+                    <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: white; line-height: 1.2;">20 ANS</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="date-text">SAMEDI 25 JUIN 2025</div>
+        <div class="time-text">14H00</div>
+        
+        <div class="gold-line"></div>
+        
+        <div class="address-text">123 rue de la fête</div>
+        <div class="rsvp-text">RSVP: 123-456-7890</div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Section Détails -->
+    <section id="details">
+        <!-- Ballons décoratifs -->
+        <div class="balloon balloon-gold" style="top: 15%; left: 7%;"></div>
+        <div class="balloon balloon-cream" style="top: 10%; right: 10%;"></div>
+        <div class="balloon balloon-gold" style="bottom: 15%; right: 7%;"></div>
+        <div class="balloon balloon-cream" style="bottom: 10%; left: 10%;"></div>
+        
+        <!-- Étoiles -->
+        <div class="star" style="top: 30%; left: 15%;"></div>
+        <div class="star" style="bottom: 25%; right: 15%;"></div>
+        
+        <!-- Confettis -->
+        <div class="confetti" style="top: 20%; right: 20%; background-color: gold;"></div>
+        <div class="confetti" style="bottom: 30%; left: 25%; background-color: #f5dd9d;"></div>
+        
+        <div class="details-container">
+            <div class="details-title">Les Détails de la Fête</div>
+            
+            <div class="detail-item">
+                <div class="detail-title">
+                    <i class="fas fa-glass-cheers"></i> Ambiance
+                </div>
+                <div class="detail-text">Une soirée élégante et inoubliable avec DJ, dance floor et surprises</div>
+            </div>
+            
+            <div class="detail-item">
+                <div class="detail-title">
+                    <i class="fas fa-utensils"></i> Repas
+                </div>
+                <div class="detail-text">Buffet gastronomique & champagne pour célébrer ensemble</div>
+            </div>
+            
+            <div class="detail-item">
+                <div class="detail-title">
+                    <i class="fas fa-tshirt"></i> Tenue
+                </div>
+                <div class="detail-text">Élégant - chic avec une touche dorée</div>
+            </div>
+            
+            <div class="detail-item">
+                <div class="detail-title">
+                    <i class="fas fa-gift"></i> Cadeaux
+                </div>
+                <div class="detail-text">Votre présence est le plus beau des cadeaux, mais une cagnotte est disponible pour ceux qui le souhaitent</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Lieu -->
+    <section id="location">
+        <!-- Ballons décoratifs -->
+        <div class="balloon balloon-gold" style="top: 5%; right: 10%;"></div>
+        <div class="balloon balloon-cream" style="bottom: 10%; left: 7%;"></div>
+        
+        <!-- Étoiles -->
+        <div class="star" style="top: 20%; left: 12%;"></div>
+        <div class="star" style="bottom: 15%; right: 15%;"></div>
+        
+        <!-- Rubans -->
+        <div class="ribbon" style="bottom: 30%; right: 15%;"></div>
+        
+        <div class="location-title">Le Lieu de Célébration</div>
+        
+        <div style="text-align: center; width: 85%; max-width: 600px;">
+            <div style="font-size: 1.5rem; color: #a08a60; margin-bottom: 20px;">
+                <i class="fas fa-map-marker-alt" style="color: #daa520; margin-right: 10px;"></i>
+                123 rue de la fête, Paris
+            </div>
+            <div style="font-size: 1.2rem; color: #a08a60; margin-bottom: 40px; font-style: italic;">
+                Notre soirée exclusive t'attend dans ce lieu magnifique au cœur de Paris
+            </div>
+        </div>
+        
+        <button class="directions-btn" id="get-directions">
+            <i class="fas fa-directions"></i> Comment y aller
+        </button>
+    </section>
+
+    <!-- Section RSVP -->
+    <section id="rsvp">
+        <!-- Ballons décoratifs -->
+        <div class="balloon balloon-gold" style="top: 10%; left: 8%;"></div>
+        <div class="balloon balloon-cream" style="top: 15%; right: 10%;"></div>
+        <div class="balloon balloon-gold" style="bottom: 8%; right: 8%;"></div>
+        <div class="balloon balloon-cream" style="bottom: 10%; left: 5%;"></div>
+        
+        <!-- Étoiles -->
+        <div class="star" style="top: 25%; right: 20%;"></div>
+        <div class="star" style="bottom: 30%; left: 15%;"></div>
+        
+        <!-- Confettis -->
+        <div class="confetti" style="top: 18%; left: 25%; background-color: gold;"></div>
+        <div class="confetti" style="bottom: 25%; right: 30%; background-color: #f5dd9d;"></div>
+        
+        <div class="rsvp-container">
+            <div class="rsvp-title">Confirme ta présence</div>
+            <div class="rsvp-subtitle">Merci de répondre avant le 15 juin 2025</div>
+            
+            <div class="button-container">
+                <button class="rsvp-btn btn-yes" id="btn-yes">Je serai présent(e)</button>
+                <button class="rsvp-btn btn-no" id="btn-no">Je ne pourrai pas venir</button>
+            </div>
+            
+            <div class="success-message" id="success-message">
+                Merci pour ta réponse !
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Attendre que tout soit chargé
+        window.addEventListener('load', function() {
+            // Cacher le loader
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 1500);
+            
+            // Observer pour animer au scroll
+            const sections = document.querySelectorAll('section');
+            
+            // Rendre la première section active immédiatement
+            setTimeout(() => {
+                document.querySelector('#intro').classList.add('active');
+                // Lancer l'apparition séquentielle des éléments décoratifs
+                staggeredAppearance();
+            }, 1800);
+            
+            // Positionner les éléments décoratifs aléatoirement
+            function randomPosition() {
+                const balloons = document.querySelectorAll('.balloon');
+                const stars = document.querySelectorAll('.star');
+                const ribbons = document.querySelectorAll('.ribbon');
+                const confettis = document.querySelectorAll('.confetti');
+                
+                // Fonction pour obtenir une position aléatoire
+                const randomPos = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+                
+                // Positionner les ballons
+                balloons.forEach(balloon => {
+                    const isGold = balloon.classList.contains('balloon-gold');
+                    const isLeft = Math.random() > 0.5;
+                    const isTop = Math.random() > 0.5;
+                    
+                    if(isLeft) {
+                        balloon.style.left = `${randomPos(3, 20)}%`;
+                    } else {
+                        balloon.style.right = `${randomPos(3, 20)}%`;
+                    }
+                    
+                    if(isTop) {
+                        balloon.style.top = `${randomPos(5, 40)}%`;
+                    } else {
+                        balloon.style.bottom = `${randomPos(5, 40)}%`;
+                    }
+                    
+                    // Ajouter un délai aléatoire pour l'animation
+                    balloon.style.transitionDelay = `${Math.random() * 0.8}s`;
+                });
+                
+                // Positionner les étoiles
+                stars.forEach(star => {
+                    const isLeft = Math.random() > 0.5;
+                    const isTop = Math.random() > 0.5;
+                    
+                    if(isLeft) {
+                        star.style.left = `${randomPos(5, 25)}%`;
+                    } else {
+                        star.style.right = `${randomPos(5, 25)}%`;
+                    }
+                    
+                    if(isTop) {
+                        star.style.top = `${randomPos(15, 40)}%`;
+                    } else {
+                        star.style.bottom = `${randomPos(15, 40)}%`;
+                    }
+                    
+                    star.style.transitionDelay = `${Math.random() * 1}s`;
+                });
+                
+                // Positionner les rubans
+                ribbons.forEach(ribbon => {
+                    const isLeft = Math.random() > 0.5;
+                    const isTop = Math.random() > 0.5;
+                    
+                    if(isLeft) {
+                        ribbon.style.left = `${randomPos(5, 15)}%`;
+                    } else {
+                        ribbon.style.right = `${randomPos(5, 15)}%`;
+                    }
+                    
+                    if(isTop) {
+                        ribbon.style.top = `${randomPos(20, 40)}%`;
+                    } else {
+                        ribbon.style.bottom = `${randomPos(20, 40)}%`;
+                    }
+                    
+                    ribbon.style.transform = `rotate(${randomPos(-45, 45)}deg) translateY(30px)`;
+                    ribbon.style.transitionDelay = `${Math.random() * 0.5}s`;
+                });
+                
+                // Positionner les confettis
+                confettis.forEach(confetti => {
+                    const isLeft = Math.random() > 0.5;
+                    const isTop = Math.random() > 0.5;
+                    
+                    if(isLeft) {
+                        confetti.style.left = `${randomPos(10, 40)}%`;
+                    } else {
+                        confetti.style.right = `${randomPos(10, 40)}%`;
+                    }
+                    
+                    if(isTop) {
+                        confetti.style.top = `${randomPos(10, 40)}%`;
+                    } else {
+                        confetti.style.bottom = `${randomPos(10, 40)}%`;
+                    }
+                    
+                    confetti.style.transform = `rotate(${randomPos(0, 360)}deg) scale(0)`;
+                    confetti.style.transitionDelay = `${Math.random() * 0.7}s`;
+                });
+            }
+            
+            // Appliquer les positions aléatoires
+            randomPosition();
+            
+            // Fonction pour faire apparaître les éléments progressivement
+            function staggeredAppearance() {
+                const decorElements = [
+                    ...document.querySelectorAll('.balloon'), 
+                    ...document.querySelectorAll('.star'),
+                    ...document.querySelectorAll('.confetti'),
+                    ...document.querySelectorAll('.ribbon')
+                ];
+                
+                // Mélanger les éléments pour un ordre aléatoire
+                shuffleArray(decorElements);
+                
+                // Faire apparaître les éléments en séquence
+                decorElements.forEach((elem, index) => {
+                    // Désactiver la transition initiale pour permettre une transition personnalisée
+                    elem.style.transition = 'none';
+                    elem.style.opacity = '0';
+                    
+                    // Appliquer un délai croissant pour chaque élément
+                    setTimeout(() => {
+                        elem.style.transition = 'opacity 1s ease, transform 1s ease';
+                        elem.style.opacity = '0.9';
+                    }, 500 + (index * 200)); // 200ms entre chaque élément
+                });
+            }
+            
+            // Fonction pour mélanger un tableau (algorithme de Fisher-Yates)
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            // Observer les sections pour le scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Appliquer l'animation séquentielle aux éléments de la section qui devient visible
+                        const decorElements = [
+                            ...entry.target.querySelectorAll('.balloon'), 
+                            ...entry.target.querySelectorAll('.star'),
+                            ...entry.target.querySelectorAll('.confetti'),
+                            ...entry.target.querySelectorAll('.ribbon')
+                        ];
+                        
+                        if (decorElements.length > 0) {
+                            // Mélanger les éléments pour un ordre aléatoire
+                            shuffleArray(decorElements);
+                            
+                            // Faire apparaître les éléments en séquence
+                            decorElements.forEach((elem, index) => {
+                                // Désactiver la transition initiale
+                                elem.style.transition = 'none';
+                                elem.style.opacity = '0';
+                                
+                                // Appliquer un délai croissant pour chaque élément
+                                setTimeout(() => {
+                                    elem.style.transition = 'opacity 1s ease, transform 1s ease';
+                                    elem.style.opacity = '0.9';
+                                }, 300 + (index * 150));
+                            });
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Gestion des boutons RSVP
+            const btnYes = document.getElementById('btn-yes');
+            const btnNo = document.getElementById('btn-no');
+            const successMessage = document.getElementById('success-message');
+            
+            btnYes.addEventListener('click', function() {
+                successMessage.style.opacity = '1';
+                successMessage.style.height = 'auto';
+                successMessage.textContent = "Merci pour ta confirmation ! Nous avons hâte de célébrer ensemble.";
+                
+                // Stocker la réponse (simulé)
+                localStorage.setItem('rsvp', 'yes');
+                
+                // Ajouter des effets de confettis pour célébrer
+                createConfetti();
+            });
+            
+            btnNo.addEventListener('click', function() {
+                successMessage.style.opacity = '1';
+                successMessage.style.height = 'auto';
+                successMessage.textContent = "Nous sommes désolés que tu ne puisses pas venir. Tu nous manqueras !";
+                
+                // Stocker la réponse (simulé)
+                localStorage.setItem('rsvp', 'no');
+            });
+            
+            // Fonction pour créer l'effet de confettis sur confirmation
+            function createConfetti() {
+                const container = document.querySelector('#rsvp');
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti-celebration';
+                    
+                    // Styles pour les confettis de célébration
+                    confetti.style.position = 'absolute';
+                    confetti.style.width = `${Math.random() * 10 + 5}px`;
+                    confetti.style.height = `${Math.random() * 10 + 5}px`;
+                    confetti.style.backgroundColor = Math.random() > 0.5 ? '#daa520' : '#f5dd9d';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.top = '0';
+                    confetti.style.opacity = '1';
+                    confetti.style.transform = 'rotate(0)';
+                    
+                    // Animation
+                    confetti.style.animation = `confettiDrop ${Math.random() * 3 + 2}s linear forwards`;
+                    
+                    container.appendChild(confetti);
+                    
+                    // Supprimer après animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+                
+                // Ajouter le style d'animation
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes confettiDrop {
+                        0% {
+                            transform: translateY(-10px) rotate(0);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Gestion du bouton d'itinéraire
+            document.getElementById('get-directions').addEventListener('click', function() {
+                // Utiliser les coordonnées exactes fournies
+                // Format pour obtenir l'itinéraire : https://www.google.com/maps/dir/?api=1&destination=lat,lng&travelmode=driving
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // Si on obtient la position actuelle
+                        const origin = position.coords.latitude + ',' + position.coords.longitude;
+                        window.open(`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=48.86452875833127,2.3701282041142213&travelmode=driving`, '_blank');
+                    },
+                    function(error) {
+                        // Si on n'obtient pas la position actuelle, on ouvre juste la destination
+                        window.open('https://www.google.com/maps/dir/?api=1&destination=48.86452875833127,2.3701282041142213&travelmode=driving', '_blank');
+                    }
+                );
+            });
+            
+            // Animation supplémentaire pour les éléments au survol
+            const interactiveElements = document.querySelectorAll('.rsvp-btn, .directions-btn');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseover', function() {
+                    const star = document.createElement('div');
+                    star.className = 'star-effect';
+                    star.style.position = 'absolute';
+                    star.style.width = '15px';
+                    star.style.height = '15px';
+                    star.style.backgroundImage = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 48"><path fill="%23daa520" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/></svg>')`;
+                    star.style.backgroundSize = 'contain';
+                    star.style.backgroundRepeat = 'no-repeat';
+                    star.style.left = `${Math.random() * 100}%`;
+                    star.style.top = `${Math.random() * 100}%`;
+                    star.style.opacity = '0';
+                    star.style.transform = 'scale(0)';
+                    star.style.transition = 'all 0.5s ease';
+                    
+                    this.appendChild(star);
+                    
+                    setTimeout(() => {
+                        star.style.opacity = '1';
+                        star.style.transform = 'scale(1)';
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        star.style.opacity = '0';
+                        setTimeout(() => {
+                            star.remove();
+                        }, 500);
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
